@@ -15,6 +15,7 @@ Algorithms written in the laboratory classes of Computer Networks
 ## Classes
 
 - **12/02/2018** *(Theory)*: Introduction.
+- **14/02/2018** *(Theory)*: The Physical Layer.
 
 ## Bibliography
 
