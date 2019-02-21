@@ -17,6 +17,8 @@ Algorithms written in the laboratory classes of Computer Networks
 - **12/02/2018** *(Theory)*: Introduction.
 - **14/02/2018** *(Theory)*: The Physical Layer.
 - **19/02/2018** *(Theory)*: The Data Link Layer.
+- **21/02/2018** *(Theory)*: Elementary Data Link Protocols
+      and Sliding Window Protocols.
 
 ## Bibliography
 
