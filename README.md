@@ -8,7 +8,7 @@ Algorithms written in the laboratory classes of Computer Networks
 [year]: https://img.shields.io/badge/year-2019.1-blue.svg?style=flat-square
 [id]: https://img.shields.io/badge/id-MCTA022--13-yellowgreen.svg?style=flat-square
 [tpi]: https://img.shields.io/badge/T--P--I-3--1--4-lightgrey.svg?style=flat-square
-[last-class]: https://img.shields.io/badge/last_class-2019.02.12-green.svg?style=flat-square
+[last-class]: https://img.shields.io/badge/last_class-2019.02.26-green.svg?style=flat-square
 [language]: https://img.shields.io/badge/language-C-yellow.svg?style=flat-square
 [ide]: https://img.shields.io/badge/IDE-VSCode-orange.svg?style=flat-square
 
@@ -19,6 +19,7 @@ Algorithms written in the laboratory classes of Computer Networks
 - **19/02/2018** *(Theory)*: The Data Link Layer.
 - **21/02/2018** *(Theory)*: Elementary Data Link Protocols
       and Sliding Window Protocols.
+- **26/02/2018** *(Theory)*: The Medium Acess Control Sublayer.
 
 ## Bibliography
 
