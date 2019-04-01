@@ -8,7 +8,7 @@ Algorithms written in the laboratory classes of Computer Networks
 [year]: https://img.shields.io/badge/year-2019.1-blue.svg?style=flat-square
 [id]: https://img.shields.io/badge/id-MCTA022--13-yellowgreen.svg?style=flat-square
 [tpi]: https://img.shields.io/badge/T--P--I-3--1--4-lightgrey.svg?style=flat-square
-[last-class]: https://img.shields.io/badge/last_class-2019.03.12-green.svg?style=flat-square
+[last-class]: https://img.shields.io/badge/last_class-2019.03.14-green.svg?style=flat-square
 [language]: https://img.shields.io/badge/language-C-yellow.svg?style=flat-square
 [ide]: https://img.shields.io/badge/IDE-VSCode-orange.svg?style=flat-square
 
@@ -26,6 +26,7 @@ Algorithms written in the laboratory classes of Computer Networks
       Distance-Vector and Link-State Routing.
 - **12/03/2018** *(Theory)*: Hierarchical, Broadcast and Multicast Routing,
       Routing for Mobile Hosts and Congestion Control.
+- **14/03/2018** *(Theory)*: **First Test**.
 
 ## Bibliography
 
