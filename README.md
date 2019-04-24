@@ -8,7 +8,7 @@ Algorithms written in the laboratory classes of Computer Networks
 [year]: https://img.shields.io/badge/year-2019.1-blue.svg?style=flat-square
 [id]: https://img.shields.io/badge/id-MCTA022--13-yellowgreen.svg?style=flat-square
 [tpi]: https://img.shields.io/badge/T--P--I-3--1--4-lightgrey.svg?style=flat-square
-[last-class]: https://img.shields.io/badge/last_class-2019.04.16-green.svg?style=flat-square
+[last-class]: https://img.shields.io/badge/last_class-2019.04.18-green.svg?style=flat-square
 [language]: https://img.shields.io/badge/language-C-yellow.svg?style=flat-square
 [ide]: https://img.shields.io/badge/IDE-VSCode-orange.svg?style=flat-square
 
@@ -40,6 +40,7 @@ Algorithms written in the laboratory classes of Computer Networks
 - **11/04/2019** *(Theory)*: Elements of Transport Protocol,
       Connection Establishment and Release and Error Control and Flow Control.
 - **16/04/2019** *(Laboratory)*: [ICMP/ARP/DHCP Protocols and Routing Table].
+- **18/04/2019** *(Theory)*: UDP, RTP and TCP Protocol.
 
 [UDP Programming]: laboratory/2019.03.26/
 [TCP Programming]: laboratory/2019.04.02/
