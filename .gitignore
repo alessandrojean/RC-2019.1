@@ -8,10 +8,15 @@ bin/
 *.o
 *.d
 *.pdf
+*.txt
+*.class
 answers.md
+laboratory/*/*.png
 
 # LaTeX stuff.
 definition.tex
 *.aux
 *.log
 *.synctex.gz
+*.fdb_latexmk
+*.fls
