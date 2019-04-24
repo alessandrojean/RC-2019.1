@@ -8,7 +8,7 @@ Algorithms written in the laboratory classes of Computer Networks
 [year]: https://img.shields.io/badge/year-2019.1-blue.svg?style=flat-square
 [id]: https://img.shields.io/badge/id-MCTA022--13-yellowgreen.svg?style=flat-square
 [tpi]: https://img.shields.io/badge/T--P--I-3--1--4-lightgrey.svg?style=flat-square
-[last-class]: https://img.shields.io/badge/last_class-2019.04.09-green.svg?style=flat-square
+[last-class]: https://img.shields.io/badge/last_class-2019.04.11-green.svg?style=flat-square
 [language]: https://img.shields.io/badge/language-C-yellow.svg?style=flat-square
 [ide]: https://img.shields.io/badge/IDE-VSCode-orange.svg?style=flat-square
 
@@ -37,6 +37,8 @@ Algorithms written in the laboratory classes of Computer Networks
 - **04/04/2019** *(Theory)*: Internet Multicasting, IP Version 6, The
       Transport Layer and The Transport Service.
 - **09/04/2019** *(Laboratory)*: [Application Protocols: HTTP and DNS].
+- **11/04/2019** *(Theory)*: Elements of Transport Protocol,
+      Connection Establishment and Release and Error Control and Flow Control.
 
 [UDP Programming]: laboratory/2019.03.26/
 [TCP Programming]: laboratory/2019.04.02/
