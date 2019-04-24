@@ -8,7 +8,7 @@ Algorithms written in the laboratory classes of Computer Networks
 [year]: https://img.shields.io/badge/year-2019.1-blue.svg?style=flat-square
 [id]: https://img.shields.io/badge/id-MCTA022--13-yellowgreen.svg?style=flat-square
 [tpi]: https://img.shields.io/badge/T--P--I-3--1--4-lightgrey.svg?style=flat-square
-[last-class]: https://img.shields.io/badge/last_class-2019.03.28-green.svg?style=flat-square
+[last-class]: https://img.shields.io/badge/last_class-2019.04.02-green.svg?style=flat-square
 [language]: https://img.shields.io/badge/language-C-yellow.svg?style=flat-square
 [ide]: https://img.shields.io/badge/IDE-VSCode-orange.svg?style=flat-square
 
@@ -33,8 +33,10 @@ Algorithms written in the laboratory classes of Computer Networks
 - **26/03/2019** *(Laboratory)*: [UDP Programming].
 - **28/03/2019** *(Theory)*: Internet Control Protocols and OSPF and BGP
       Routing Protocols.
+- **02/04/2019** *(Laboratory)*: [TCP Programming].
 
 [UDP Programming]: laboratory/2019.03.26/
+[TCP Programming]: laboratory/2019.04.02/
 
 ## Build instructions
 
