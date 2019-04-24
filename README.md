@@ -34,6 +34,24 @@ Algorithms written in the laboratory classes of Computer Networks
 
 [UDP Programming]: laboratory/2019.03.26/
 
+## Build instructions
+
+Use the following commands to compile any `.java` file in this repository.
+
+```bash
+# Assuming you have the JDK in your path.
+
+# Compiles the file in the same folder.
+$ javac File.java
+# Compiles all the .java files in the folder.
+$ java *.java
+# Run the program.
+$ java File
+```
+
+You can also import any `.java` file to a Java IDE, like Eclipse, Netbeans
+or IntelliJ Idea too.
+
 ## Bibliography
 
 - Tanenbaum, A. S. **Computer Networks**, 4th edition. 
