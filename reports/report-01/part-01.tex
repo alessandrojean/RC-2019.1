@@ -1,0 +1,162 @@
+\question
+Aplicação cliente-servidor UDP.
+
+\begin{parts}
+  \part
+  Execute primeiro o servidor (\verb|UDPServer.java|) e depois o cliente
+  (\verb|UDPClient.java|). O que aconteceu? Justifique.
+
+  \begin{solution}
+    O cliente é capaz de se comunicar com o servidor através de datagramas.
+    Enquanto novas mensagens não são enviados ao servidor, o mesmo bloqueia
+    no laço de repetição infinito. Ao receber a mensagem, em formato de 
+    \verb|String|, o servidor altera-a passando para letras maiúsculas, 
+    criando um bloco de dados que será colocado em outro pacote de datagrama
+    para ser enviado de volta ao cliente. O cliente, no entanto, executa
+    uma única vez, encerrando-o após o servidor executar o serviço,
+    liberando os recursos que foram alocados.
+
+    \begin{Verbatim}[label={\$ java UDPServer}]
+    RECEIVED FROM CLIENT 127.0.0.1: Este eh um teste
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPClient}]
+    Este eh um teste
+    RECEIVED FROM SERVER: ESTE EH UM TESTE
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Execute primeiro o cliente e depois o servidor. O que aconteceu?
+  Justifique.
+
+  \begin{solution}
+    O protocolo de comunicação falha, pois supõe-se que sempre há um servidor 
+    do outro lado, o cliente fica bloqueado esperando uma resposta que
+    nunca virá. Para haver a comunicação é necessário que ambos
+    cliente e servidor estejam trabalhando ao mesmo tempo para haver 
+    comunicação no protocolo estabelecido.
+
+    \begin{Verbatim}[label={\$ java UDPClient}]
+    Teste
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPServer}]
+    [Sem saída]
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Altere as portas do servidor e cliente. O que acontece se as portas
+  forem diferentes? Justifique.
+
+  \begin{solution}
+    A porta é o endereço da camada de transporte, ele que permite que
+    o pacote seja endereçado ao processo correto. Não há resposta
+    pois o cliente envia para uma porta que não há nenhum servidor
+    escutando, fazendo com que o pacote seja perdido. Com isto,
+    o cliente fica travado pois nunca terá resposta.
+
+    \begin{Verbatim}[label={\$ java UDPServer}]
+    [Sem saída]
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPClient}]
+    Este eh um teste
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Execute servidor e cliente em máquinas diferentes. Em seguida, envie
+  várias mensagens ao servidor a partir de várias máquinas diferentes
+  (ao mesmo tempo!). O que aconteceu?
+
+  \begin{solution}
+    O servidor recebe as mensagens endereçadas a ele, a partir
+    de máquinas diferentes e ao mesmo tempo. Os pacotes são recebidos
+    e o servidor envia a resposta.
+
+    \begin{Verbatim}[label={\$ java UDPServer}]
+    RECEIVED FROM CLIENT 172.17.13.228: Ola
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPClient}]
+    Ola
+    RECEIVED FROM SERVER: OLA
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Modifique o programa cliente para enviar mais de uma mensagem 
+  digitada pelo usuário. É necessário alterar também o código
+  do servidor? Justifique.
+
+  \begin{solution}
+    Não é necessário alterar também o código do servidor já que inicialmente
+    o mesmo já está habilitado para ouvir infinitamente novos pacotes
+    que sejam endereçados a ele.
+
+    \begin{Verbatim}[label={\$ java UDPServer}]
+    RECEIVED FROM CLIENT 127.0.0.1: Teste1
+    RECEIVED FROM CLIENT 127.0.0.1: Teste2
+    RECEIVED FROM CLIENT 127.0.0.1: Teste3
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPClientModified}]
+    Teste1
+    RECEIVED FROM SERVER: TESTE1
+    Teste2
+    RECEIVED FROM SERVER: TESTE2
+    Teste3
+    RECEIVED FROM SERVER: TESTE3
+    /quit
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Modifique o programa para que o servidor não responda a um usuário
+  indesejado (\emph{white list} ou \emph{black list}).
+
+  \begin{solution}
+    Foi realizado a implementação de uma \emph{black list} no servidor,
+    através da criação de uma \verb|List| que contém os endereços IPs
+    bloqueados e, durante a recepção de um pacote, verifica-se
+    se o IP está na lista dos bloqueados.
+
+    \begin{Verbatim}[label={\$ java UDPServerModified}]
+    BLOCKED FROM CLIENT 172.17.13.228: Estou bloqueado
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPClientModified}]
+    Estou bloqueado
+    \end{Verbatim}
+  \end{solution}
+\end{parts}
+
+\question
+Desenvolvimento de aplicação cliente-servidor UDP.
+
+\begin{parts}
+  \part
+  Crie um procolo de aplicação qualquer e implemente o cliente e
+  servidor para esse protocolo.
+
+  \begin{solution}
+    O protocolo estabelecido permite que o cliente envie uma frase
+    para o servidor. Este verifica se a frase é palíndroma, retornando
+    como resposta \verb|SIM| caso positivo e \verb|NÃO| caso negativo.
+
+    \begin{Verbatim}[label={\$ java UDPServerModifiedChecker}, fontsize=\small]
+    RECEIVED FROM CLIENT 172.17.13.228: banana
+    RECEIVED FROM CLIENT 172.17.13.228: Socorram me subi no onibus em Marrocos
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java UDPClientModified}]
+    banana
+    RECEIVED FROM SERVER: NÃO
+    Socorram me subi no onibus em Marrocos
+    RECEIVED FROM SERVER: SIM
+    /quit
+    \end{Verbatim}
+  \end{solution}
+\end{parts}

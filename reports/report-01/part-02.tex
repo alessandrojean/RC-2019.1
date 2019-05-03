@@ -1,0 +1,200 @@
+\question
+Aplicação cliente-servidor TCP.
+
+\begin{parts}
+  \part
+  Execute primeiro o servidor (\verb|TCPServer.java|) e depois o
+  cliente (\verb|TCPClient.java|). O que aconteceu?
+
+  \begin{solution}
+    O servidor estabelece um \verb|ServerSocket|, ficando em um loop 
+    infinito esperando por uma conexão. Se houver uma conexão, o servidor
+    lê as \verb|Strings| enviadas pelo cliente, passando-as para maiúscula
+    e devolvendo para o mesmo. A abstração utilizada no \emph{socket}
+    é uma de fluxo, onde há um de entrada, pelo teclado, e saída,
+    para envio dos dados. A conexão entre servidor-cliente é mantida
+    até que o cliente envie uma linha em branco.
+
+    \begin{Verbatim}[label={\$ java TCPServer}]
+    Waiting for connection at port 9000.
+    Connection established from /127.0.0.1
+    Waiting for connection at port 9000.
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPClient}]
+    Ola, este eh um teste
+    OLA, ESTE EH UM TESTE
+    Mensagem para o servidor
+    MENSAGEM PARA O SERVIDOR
+   
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Execute primeiro o cliente e depois o servidor. O que aconteceu?
+  Justifique.
+
+  \begin{solution}
+    Para o cliente estabelecer uma conexão com o servidor, este deve
+    já estar operando. Caso o servidor não esteja operando, a camada
+    de transporte do servidor enviará uma mensagem ao cliente informando
+    que não é possível estabelecer uma conexão, gerando uma exceção no
+    Java, onde a conexão é recusada.
+
+    \begin{Verbatim}[label={\$ java TCPClient}, fontsize=\scriptsize]
+    Exception in thread "main" java.net.ConnectException: Conexão recusada (Connection refused)
+      at java.net.PlainSocketImpl.socketConnect(Native Method)
+      at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+      at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+      at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+      at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+      at java.net.Socket.connect(Socket.java:589)
+      at java.net.Socket.connect(Socket.java:538)
+      at java.net.Socket.<init>(Socket.java:434)
+      at java.net.Socket.<init>(Socket.java:211)
+      at TCPClient.main(TCPClient.java:11)
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPServer}]
+    Waiting for connection at port 9000.    
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Altere as portas do servidor e cliente. O que acontece se as portas
+  forem diferentes? Justifique.
+
+  \begin{solution}
+    Para se estabelecer uma comunicação, além do número do IP
+    é necessário saber a qual processo ela se direciona. Logo,
+    como o servidor opera na porta \verb|9000|, o cliente precisa 
+    necessariamente utilizar esta porta para estabelecer uma conexão
+    e trocar os dados sem nenhum problema.
+
+    \begin{Verbatim}[label={\$ java TCPServer}]
+    Waiting for connection at port 9000.
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPClient}, fontsize=\scriptsize]
+    Exception in thread "main" java.net.ConnectException: Conexão recusada (Connection refused)
+      at java.net.PlainSocketImpl.socketConnect(Native Method)
+      at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+      at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+      at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+      at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+      at java.net.Socket.connect(Socket.java:589)
+      at java.net.Socket.connect(Socket.java:538)
+      at java.net.Socket.<init>(Socket.java:434)
+      at java.net.Socket.<init>(Socket.java:211)
+      at TCPClient.main(TCPClient.java:11)
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Execute servidor e cliente em máquinas diferentes. Em seguida, envie
+  várias mensagens ao servidor a partir de várias máquinas diferentes
+  (ao mesmo tempo!). O que aconteceu? Justifique.
+
+  \begin{solution}
+    Não é possível estabelecer uma conexão com o servidor quando
+    um cliente já está conectado ao servidor, já que a comunicação
+    é sempre um-para-um, uma relação entre o \emph{host} de origem e o
+    \emph{host} de destino. Para permitir que múltiplos clientes
+    se conectem ao servidor, será necessário modificar seu código.
+
+    \begin{Verbatim}[label={\$ java TCPServer}]
+    Waiting for connection at port 9000.
+    Connection established from /172.17.13.228
+    Waiting for connection at port 9000
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPClient}]
+    Este eh um teste
+    ESTE EH UM TESTE
+    Enviando de maquina diferente
+    ENVIANDO DE MAQUINA DIFERENTE
+
+    \end{Verbatim}
+  \end{solution}
+
+  \part
+  Verifique o cliente e servidor UDP da aula anterior. Quais as
+  principais diferenças para o cliente e servidor TCP?
+
+  \begin{solution}
+    No UDP não se estabelece uma conexão entre cliente-servidor.
+    O servidor recebe os datagramas e envia esses datagramas.
+    Já no TCP é necessário estabelecer uma conexão para a comunicação,
+    além do fato que o servidor somente aceita um cliente conectado
+    por vez. No UDP também não é necessário encerrar a conexão,
+    visto que ela nunca é estabelecida, enquanto no TCP é necessário
+    encerrar a conexão para liberar o servidor.
+  \end{solution}
+
+  \part
+  Modifique o programa cliente para que permaneça conectado enviando
+  mensagens ao servidor. A conexão só será desfeita se o cliente enviar
+  o comando ``tchau'' para o servidor. Faça também as modificações
+  necessárias no código do servidor.
+
+  \begin{solution}
+    Modificou-se a verificação no cliente para quando o usuário dava
+    um enter para sinalizar que queria encerrar a conexão. Após o usuário
+    enviar o comando ``tchau'', este comando é enviado ao servidor e o
+    cliente se desconecta, bem como o servidor que identifica o comando
+    e se desconecta também.\\
+
+    \begin{Verbatim}[label={\$ java TCPServerModified}]
+    Waiting for connection at port 9000.
+    Connection established from /127.0.0.1
+    Waiting for connection at port 9000.
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPClientModified}]
+    Ola, este eh um teste
+    OLA, ESTE EH UM TESTE
+    Tambem um teste
+    TAMBEM UM TESTE
+    tchau
+    \end{Verbatim}
+  \end{solution}
+\end{parts}
+
+\question
+Desenvolvimento de um servidor TCP com múltiplos clientes.
+
+\begin{parts}
+  \part
+  Implemente um servidor que atenda a vários clientes simultaneamente.
+
+  \begin{solution}
+    O servidor fica em um \emph{loop} infinito aguardando por conexões,
+    quando ele recebe alguma, inicia-se uma nova \emph{thread} para
+    a conexão, permitindo com que vários clientes sejam atendidos
+    ao mesmo tempo.
+
+    \begin{Verbatim}[label={\$ java TCPServerMultiple}]
+    Waiting for connection at port 9000.
+    Waiting for connection at port 9000.
+    Connection established from /172.17.13.228
+    Waiting for connection at port 9000.
+    Connection established from /172.17.13.220
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPClient [172.17.13.220]}]
+    Este eh um teste
+    ESTE EH UM TESTE
+    Tambem um teste
+    TAMBEM UM TESTE
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[label={\$ java TCPClient [172.17.13.228]}]
+    Enviando da outra maquina
+    ENVIANDO DA OUTRA MAQUINA
+    Por enquanto tah tudo tranquilo
+    POR ENQUANTO TAH TUDO TRANQUILO
+
+    \end{Verbatim}
+  \end{solution}
+\end{parts}
