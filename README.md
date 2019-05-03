@@ -42,6 +42,7 @@ Algorithms written in the laboratory classes of Computer Networks
 - **16/04/2019** *(Laboratory)*: [ICMP/ARP/DHCP Protocols and Routing Table].
 - **18/04/2019** *(Theory)*: UDP, RTP and TCP Protocol.
 - **23/04/2019** *(Laboratory)*: [Transport Protocols: UDP and TCP].
+- **25/04/2019** *(Theory)*: TCP Transmission Strategy and Performance Issues.
 
 [UDP Programming]: laboratory/2019.03.26/
 [TCP Programming]: laboratory/2019.04.02/
